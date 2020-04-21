@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './PixelManMain.css'
+import './PixelMan.css'
 import GameInit from'./GameInit'
 export const PixelManMain = (props) => {
     const [startGame, setStartGame] = useState(0);
