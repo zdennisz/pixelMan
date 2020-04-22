@@ -1,15 +1,23 @@
 import React, { useState, useEffect,useRef } from 'react';
 import './GameInit.css'
+import useKeyPress from './useKeyPress';
 import soundTrack from './soundTrack.mp3'
 export  const GameInit=(props)=>{
+    const width= window.innerWidth/1.5;
+    const height=window.innerHeight;
+    const ratio=window.devicePixelRatio || 1;
 
 var canvasPointer;
 const [ musicPlay,setMusicPlay]=useState(1);
 const [screen,setScreen]=useState({
-    width: window.innerWidth/1.5,
-    height: window.innerHeight,
-    ratio: window.devicePixelRatio || 1
+    width: width,
+    height: height,
+    ratio: ratio
 });
+const up=useKeyPress('w');
+const down=useKeyPress('s');
+const left=useKeyPress('a');
+const right=useKeyPress('d');
 const canvasRef=useRef(null);
 var ctx;
 
@@ -22,6 +30,8 @@ useEffect(()=>{
 //componentMount
 turnMusicOn(soundTrack);
 initGameBoard(ctx,canvasRef);
+
+
 },[])
 
 
