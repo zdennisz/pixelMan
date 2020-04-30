@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-
-
-export function useKeyPress(targetKey){
+export const useKeyPress=(keyToDetec,funcToDo)=>{
 const [keyPressed,setKeyPressed]=useState(false);
 
 const downHandler=({key})=>{
-    if(key===targetKey){
+    if(key===keyToDetec){
         setKeyPressed(true);
-        console.log('Pressed');
+        funcToDo();
     }
 }
 
 const upHandler=({key})=>{
-if(key===targetKey){
+if(key===keyToDetec){
     setKeyPressed(false);
-    console.log("Not Pressed");
+   
 }
 }
 useEffect(()=>{

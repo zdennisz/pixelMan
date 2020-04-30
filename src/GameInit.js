@@ -14,23 +14,43 @@ const [screen,setScreen]=useState({
     height: height,
     ratio: ratio
 });
-const up=useKeyPress('w');
-const down=useKeyPress('s');
-const left=useKeyPress('a');
-const right=useKeyPress('d');
+const wKeyPressFunc=()=>{
+    console.log("Go Up");
+    }
+
+const aKeyPressFunc=()=>{
+    console.log("Go Left");
+}
+
+const sKeyPressFunc=()=>{
+    console.log("Go Down");
+}
+const dKeyPressFunc=()=>{
+    console.log("Go Right");
+}
+
+const up=useKeyPress('w',wKeyPressFunc);
+const down=useKeyPress('s',sKeyPressFunc);
+const left=useKeyPress('a',aKeyPressFunc);
+const right=useKeyPress('d',dKeyPressFunc);
 const canvasRef=useRef(null);
 var ctx;
 
+function update(){
+console.log("Main update loop")
+//will need to update the main game loop here
+}
 
 //start the background music - done
 //set up the amount of lives left - done
 //init the gameboard - done
+//catch key movement -done
 
 useEffect(()=>{
 //componentMount
 turnMusicOn(soundTrack);
 initGameBoard(ctx,canvasRef);
-
+requestAnimationFrame(()=>update())
 
 },[])
 
