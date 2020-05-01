@@ -1,8 +1,12 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect,useRef, useLayoutEffect } from 'react';
+
 import './GameInit.css'
 import useKeyPress from './useKeyPress';
 import soundTrack from './soundTrack.mp3'
+var PixelSheera=require('./PixelSheera')
 export  const GameInit=(props)=>{
+    
+
     const width= window.innerWidth/1.5;
     const height=window.innerHeight;
     const ratio=window.devicePixelRatio || 1;
@@ -14,43 +18,80 @@ const [screen,setScreen]=useState({
     height: height,
     ratio: ratio
 });
+
+function reDrawOnCanvas(){
+    const context = canvasRef.current.getContext("2d");
+    context.fillStyle = "#FF0000";
+    context.fillRect(PixelSheera.position.x,PixelSheera.position.y,5,5); 
+}
+
 const wKeyPressFunc=()=>{
-    console.log("Go Up");
+    console.log(PixelSheera.position.y +' up');
+    if(PixelSheera.position.y>=1){
+    PixelSheera.position.y=PixelSheera.position.y-PixelSheera.speed;
+    reDrawOnCanvas();
     }
+}
 
 const aKeyPressFunc=()=>{
-    console.log("Go Left");
+    console.log(PixelSheera.position.x+' left');
+    if(PixelSheera.position.x>=1){
+    PixelSheera.position.x=PixelSheera.position.x-PixelSheera.speed;
+    reDrawOnCanvas(); 
+    }
 }
 
 const sKeyPressFunc=()=>{
-    console.log("Go Down");
+    console.log(PixelSheera.position.y+'  down');
+    if(PixelSheera.position.y<=height){
+    PixelSheera.position.y=PixelSheera.position.y+PixelSheera.speed;
+    reDrawOnCanvas();
+
+    }
 }
 const dKeyPressFunc=()=>{
-    console.log("Go Right");
+    console.log(PixelSheera.position.x+' right');
+    if(PixelSheera.position.x<=width){
+    PixelSheera.position.x=PixelSheera.position.x+PixelSheera.speed;
+    reDrawOnCanvas();
+ 
+    }
 }
+useKeyPress('w',wKeyPressFunc);
+useKeyPress('s',sKeyPressFunc);
+useKeyPress('a',aKeyPressFunc);
+useKeyPress('d',dKeyPressFunc);
 
-const up=useKeyPress('w',wKeyPressFunc);
-const down=useKeyPress('s',sKeyPressFunc);
-const left=useKeyPress('a',aKeyPressFunc);
-const right=useKeyPress('d',dKeyPressFunc);
+
 const canvasRef=useRef(null);
 var ctx;
-
 function update(){
 console.log("Main update loop")
+
+if(ctx!==undefined){
+   // ctx.drawImage(,PixelSheera.position.x,PixelSheera.position.y)
+}    
+
 //will need to update the main game loop here
+requestAnimationFrame(()=>{update()})
 }
 
 //start the background music - done
 //set up the amount of lives left - done
 //init the gameboard - done
 //catch key movement -done
-
+//draw svg icon on canvas - currently cant seen to draw
+useLayoutEffect(()=>{
+    const context = canvasRef.current.getContext("2d");
+    context.fillStyle = "#FF0000";
+    context.fillRect(PixelSheera.position.x,PixelSheera.position.y,5,5); 
+})
 useEffect(()=>{
 //componentMount
 turnMusicOn(soundTrack);
 initGameBoard(ctx,canvasRef);
 requestAnimationFrame(()=>update())
+
 
 },[])
 
@@ -70,7 +111,6 @@ return(
 
 
 
-
 function setupAmountOfLives(){
   return  Math.floor(Math.random() * 5) + 1;
 }
@@ -85,6 +125,7 @@ function initEnemyPosition(){
 function  initGameBoard(ctx,canvasRef){
     const canvas=canvasRef.current;
     ctx=canvas.getContext('2d');
+
 }
 
 function turnMusicOn(url){
@@ -92,4 +133,5 @@ function turnMusicOn(url){
     audio.volume=0.2;
     audio.play();
 }
+
 export default GameInit;

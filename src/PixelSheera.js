@@ -1,17 +1,8 @@
-import React, { useState, useEffect,useRef } from 'react';
-
-export const PixelSheera=()=>{
-var position,speed;
 
 
+export const position = {
+    x: 0,
+    y: 0
+};
+export const speed = 1;
 
-
-
-
-
-
-
-} 
-
-
-export default PixelSheera;
