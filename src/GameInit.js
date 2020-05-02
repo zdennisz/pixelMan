@@ -71,7 +71,9 @@ console.log("Main update loop")
 if(ctx!==undefined){
    // ctx.drawImage(,PixelSheera.position.x,PixelSheera.position.y)
 }    
-
+const context = canvasRef.current.getContext("2d");
+context.fillStyle = '#ffffff';
+context.fill();
 //will need to update the main game loop here
 requestAnimationFrame(()=>{update()})
 }
@@ -83,6 +85,8 @@ requestAnimationFrame(()=>{update()})
 //draw svg icon on canvas - currently cant seen to draw
 useLayoutEffect(()=>{
     const context = canvasRef.current.getContext("2d");
+    context.fillStyle = '#8ED6FF';
+    context.fillRect(0,0,width,height);
     context.fillStyle = "#FF0000";
     context.fillRect(PixelSheera.position.x,PixelSheera.position.y,5,5); 
 })
