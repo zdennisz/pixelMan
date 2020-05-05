@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
-export const useKeyPress=(keyToDetec,funcToDo)=>{
+export const useKeyPress=(keyToDetec,executeCallBack)=>{
 const [keyPressed,setKeyPressed]=useState(false);
 
-const downHandler=({key})=>{
-    if(key===keyToDetec){
+const downHandler=(e)=>{
+    if(e.key===keyToDetec){
         setKeyPressed(true);
-        funcToDo();
+        executeCallBack();
     }
 }
 
-const upHandler=({key})=>{
-if(key===keyToDetec){
+const upHandler=(e)=>{
+if(e.key===keyToDetec){
     setKeyPressed(false);
   
 }
@@ -21,7 +21,7 @@ const keyHoldHandler=(e)=>{
    
     if(e.key===keyToDetec){
         setKeyPressed(true);
-        funcToDo();
+        executeCallBack();
     }
 }
 useEffect(()=>{

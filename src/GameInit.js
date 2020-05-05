@@ -25,7 +25,7 @@ function reDrawOnCanvas(){
     context.fillRect(PixelSheera.position.x,PixelSheera.position.y,5,5); 
 }
 
-const wKeyPressFunc=()=>{
+const upKeyPressFunc=()=>{
     console.log(PixelSheera.position.y +' up');
     if(PixelSheera.position.y>=1){
     PixelSheera.position.y=PixelSheera.position.y-PixelSheera.speed;
@@ -33,7 +33,7 @@ const wKeyPressFunc=()=>{
     }
 }
 
-const aKeyPressFunc=()=>{
+const leftKeyPressFunc=()=>{
     console.log(PixelSheera.position.x+' left');
     if(PixelSheera.position.x>=1){
     PixelSheera.position.x=PixelSheera.position.x-PixelSheera.speed;
@@ -41,7 +41,7 @@ const aKeyPressFunc=()=>{
     }
 }
 
-const sKeyPressFunc=()=>{
+const downKeyPressFunc=()=>{
     console.log(PixelSheera.position.y+'  down');
     if(PixelSheera.position.y<=height){
     PixelSheera.position.y=PixelSheera.position.y+PixelSheera.speed;
@@ -49,7 +49,7 @@ const sKeyPressFunc=()=>{
 
     }
 }
-const dKeyPressFunc=()=>{
+const rightKeyPressFunc=()=>{
     console.log(PixelSheera.position.x+' right');
     if(PixelSheera.position.x<=width){
     PixelSheera.position.x=PixelSheera.position.x+PixelSheera.speed;
@@ -57,11 +57,14 @@ const dKeyPressFunc=()=>{
  
     }
 }
-useKeyPress('w',wKeyPressFunc);
-useKeyPress('s',sKeyPressFunc);
-useKeyPress('a',aKeyPressFunc);
-useKeyPress('d',dKeyPressFunc);
-
+useKeyPress('w',upKeyPressFunc);
+useKeyPress('s',downKeyPressFunc);
+useKeyPress('a',leftKeyPressFunc);
+useKeyPress('d',rightKeyPressFunc);
+useKeyPress('ArrowUp',upKeyPressFunc);
+useKeyPress('ArrowDown',downKeyPressFunc);
+useKeyPress('ArrowLeft',leftKeyPressFunc);
+useKeyPress('ArrowRight',rightKeyPressFunc);
 
 const canvasRef=useRef(null);
 var ctx;
