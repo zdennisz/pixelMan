@@ -21,8 +21,8 @@ const [screen,setScreen]=useState({
 
 function reDrawOnCanvas(){
     const context = canvasRef.current.getContext("2d");
-    context.fillStyle = "#FF0000";
-    context.fillRect(PixelSheera.position.x,PixelSheera.position.y,5,5); 
+
+    context.drawImage(PixelSheera.heroImage,PixelSheera.position.x,PixelSheera.position.y)
 }
 
 const upKeyPressFunc=()=>{
@@ -77,6 +77,7 @@ if(ctx!==undefined){
 const context = canvasRef.current.getContext("2d");
 context.fillStyle = '#ffffff';
 context.fill();
+context.drawImage(PixelSheera.heroImage,PixelSheera.position.x,PixelSheera.position.y)
 //will need to update the main game loop here
 requestAnimationFrame(()=>{update()})
 }
@@ -90,8 +91,8 @@ useLayoutEffect(()=>{
     const context = canvasRef.current.getContext("2d");
     context.fillStyle = '#8ED6FF';
     context.fillRect(0,0,width,height);
-    context.fillStyle = "#FF0000";
-    context.fillRect(PixelSheera.position.x,PixelSheera.position.y,5,5); 
+
+    context.drawImage(PixelSheera.heroImage,PixelSheera.position.x,PixelSheera.position.y)
 })
 useEffect(()=>{
 //componentMount
