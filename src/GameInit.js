@@ -24,8 +24,7 @@ export const GameInit = (props) => {
         const context = canvasRef.current.getContext("2d",{ alpha: false });
         context.fillStyle = '#8ED6FF';
         context.fillRect(0, 0, width, height);
-        context.drawImage(PixelSheera.heroImage, PixelSheera.position.x, PixelSheera.position.y)
-        console.log(MonsterPac)
+        context.drawImage(PixelSheera.heroImage, PixelSheera.position.x, PixelSheera.position.y) 
         MonsterPac.forEach(element=> context.drawImage(element.monsterImage,element.position.x,element.position.y));
     }
 
