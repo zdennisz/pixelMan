@@ -3,10 +3,12 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import './GameInit.css'
 import useKeyPress from './useKeyPress';
 import soundTrack from './soundTrack.mp3'
+import monsterPacCreator from './MonsterCreator'
 var PixelSheera = require('./PixelSheera')
+
 export const GameInit = (props) => {
     const width = window.innerWidth / 1.5;
-    const height = window.innerHeight;
+    const height = window.innerHeight/ 1.5;
     const ratio = window.devicePixelRatio || 1;
 
     const [musicPlay, setMusicPlay] = useState(1);
@@ -15,12 +17,16 @@ export const GameInit = (props) => {
         height: height,
         ratio: ratio
     });
+    var MonsterPac=monsterPacCreator(3,height,width);
+
 
     function reDrawOnCanvas() {
-        const context = canvasRef.current.getContext("2d");
+        const context = canvasRef.current.getContext("2d",{ alpha: false });
         context.fillStyle = '#8ED6FF';
         context.fillRect(0, 0, width, height);
         context.drawImage(PixelSheera.heroImage, PixelSheera.position.x, PixelSheera.position.y)
+        console.log(MonsterPac)
+        MonsterPac.forEach(element=> context.drawImage(element.monsterImage,element.position.x,element.position.y));
     }
 
     const upKeyPressFunc = () => {
@@ -68,27 +74,13 @@ export const GameInit = (props) => {
     var ctx;
     function update() {
         console.log("Main update loop")
-
-        if (ctx !== undefined) {
-            // ctx.drawImage(,PixelSheera.position.x,PixelSheera.position.y)
-        }
-        const context = canvasRef.current.getContext("2d");
-        context.fillStyle = '#ffffff';
-        context.fill();
-        context.drawImage(PixelSheera.heroImage, PixelSheera.position.x, PixelSheera.position.y)
+        reDrawOnCanvas();
         //will need to update the main game loop here
         requestAnimationFrame(() => { update() })
     }
 
-   
-    
-    useLayoutEffect(() => {
-        const context = canvasRef.current.getContext("2d");
-        context.fillStyle = '#8ED6FF';
-        context.fillRect(0, 0, width, height);
 
-        context.drawImage(PixelSheera.heroImage, PixelSheera.position.x, PixelSheera.position.y)
-    })
+
     useEffect(() => {
         //componentMount
         turnMusicOn(soundTrack);
