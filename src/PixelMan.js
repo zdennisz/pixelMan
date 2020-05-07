@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './PixelMan.css'
-import GameInit from'./GameInit'
+import GameInit from './GameInit'
 export const PixelManMain = (props) => {
     const [startGame, setStartGame] = useState(0);
 
@@ -11,12 +11,12 @@ export const PixelManMain = (props) => {
     return (
         <div>
             <div className="mainContainer">
-            {startGame ?
-                <GameInit />
-                :
-                <div className="buttonStartGame" onClick={handleStartButton}><p className="buttonName">Dive In</p></div>
+                {startGame ?
+                    <GameInit />
+                    :
+                    <div className="buttonStartGame" onClick={handleStartButton}><p className="buttonName">Dive In</p></div>
 
-            }
+                }
             </div>
         </div>);
 }
