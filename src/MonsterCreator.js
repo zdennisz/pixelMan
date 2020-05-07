@@ -1,13 +1,14 @@
 import getMonster from './constants'
-
+const minDistanceFromEdge=32;
+const offsetFromBothSides=64;
 function createMonster(height, width) {
 
     //create position according to game screen
     var monsterPic = new Image(16, 16);
     monsterPic.src = getMonster(Math.floor(Math.random() * 30));
     console.log(monsterPic.src)
-    var posX = Math.floor(Math.random() * height) + 1
-    var posY = Math.floor(Math.random() * width) + 1
+    var posX = minDistanceFromEdge+Math.floor(Math.random() * (height-offsetFromBothSides)) + 1
+    var posY = minDistanceFromEdge+Math.floor(Math.random() * (width-offsetFromBothSides)) + 1
     var monster = {
         position: {
             x: posX,
