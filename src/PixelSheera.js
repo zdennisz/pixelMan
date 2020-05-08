@@ -7,4 +7,5 @@ export const position = {
     y: 0
 };
 export const speed = 1;
+export const radius=16;
 

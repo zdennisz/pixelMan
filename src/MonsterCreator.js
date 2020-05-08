@@ -6,7 +6,6 @@ function createMonster(height, width) {
     //create position according to game screen
     var monsterPic = new Image(16, 16);
     monsterPic.src = getMonster(Math.floor(Math.random() * 30));
-    console.log(monsterPic.src)
     var posX = minDistanceFromEdge+Math.floor(Math.random() * (height-offsetFromBothSides)) + 1
     var posY = minDistanceFromEdge+Math.floor(Math.random() * (width-offsetFromBothSides)) + 1
     var monster = {
@@ -16,7 +15,8 @@ function createMonster(height, width) {
         }
         ,
         speed: 1,
-        monsterImage: monsterPic
+        monsterImage: monsterPic,
+        radius:16
     }
 
     return monster;
