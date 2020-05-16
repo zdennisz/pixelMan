@@ -1,4 +1,4 @@
-import defaultSoundTrack from './soundTrack.mp3'
+import defaultSoundTrack from './MusicResources/soundTrack.mp3'
 
 var audio;
 
