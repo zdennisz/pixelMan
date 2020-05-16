@@ -11,10 +11,10 @@ const width = window.innerWidth / 1.5;
 const height = window.innerHeight / 1.5;
 const collisionTimeOut = 8;
 export const GameInit = (props) => {
-    const fps = 20;//
-    var collisionCounter = 0;
-    const ratio = window.devicePixelRatio || 1;
-    var playMusic = 1;
+    const fps = 20;//limit fps to 50
+    var playMusic = 1;//music flag 1-play 0-pause
+    var collisionCounter = 0;//collision counter every 8 is a collision
+    const ratio = window.devicePixelRatio || 1;    
     const [screen, setScreen] = useState({
         width: width,
         height: height,
