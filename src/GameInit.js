@@ -2,15 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import './GameInit.css'
 import useKeyPress from './useKeyPress';
-import soundTrack from './soundTrack.mp3'
 import monsterPacCreator from './MonsterCreator'
 import { checkCollision } from './Helper'
 var PixelSheera = require('./PixelSheera')
+var MusicPlayer = require( './MusicPlayer' );
 const width = window.innerWidth / 1.5;
 const height = window.innerHeight / 1.5;
 export const GameInit = (props) => {
     const ratio = window.devicePixelRatio || 1;
-    const [musicPlay, setMusicPlay] = useState(1);
+    var playMusic = 1;
     const [screen, setScreen] = useState({
         width: width,
         height: height,
@@ -63,6 +63,27 @@ export const GameInit = (props) => {
 
         }
     }
+
+    const spaceKeyPressFunc = () => {
+        if (playMusic) {
+            MusicPlayer.pauseMusic();
+            playMusic = 0;
+        } else {
+            playMusic = 1;
+            MusicPlayer.playMusic();
+        }
+    }
+
+    const numPadAddKeyPressFunc = () => {
+        MusicPlayer.increaseVol();
+
+    }
+    const numPadSubtractKeyPressFunc = () => {
+        MusicPlayer.decreaseVol();
+
+    }
+
+
     useKeyPress('w', upKeyPressFunc);
     useKeyPress('s', downKeyPressFunc);
     useKeyPress('a', leftKeyPressFunc);
@@ -71,6 +92,9 @@ export const GameInit = (props) => {
     useKeyPress('ArrowDown', downKeyPressFunc);
     useKeyPress('ArrowLeft', leftKeyPressFunc);
     useKeyPress('ArrowRight', rightKeyPressFunc);
+    useKeyPress(' ', spaceKeyPressFunc);
+    useKeyPress('+', numPadAddKeyPressFunc)
+    useKeyPress('-', numPadSubtractKeyPressFunc)
 
     const canvasRef = useRef(null);
     var ctx;
@@ -84,15 +108,13 @@ export const GameInit = (props) => {
 
     useEffect(() => {
         //componentMount
-        turnMusicOn(soundTrack);
+        MusicPlayer.setTrack();
+        MusicPlayer.playMusic();
         initGameBoard(ctx, canvasRef);
         requestAnimationFrame(() => update())
 
 
     }, [])
-
-
-
 
 
     return (
@@ -111,12 +133,6 @@ function initGameBoard(ctx, canvasRef) {
     const canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
 
-}
-
-function turnMusicOn(url) {
-    var audio = new Audio(url);
-    audio.volume = 0.2;
-    audio.play();
 }
 
 export default GameInit;

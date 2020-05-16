@@ -4,10 +4,12 @@ export const useKeyPress = (keyToDetec, executeCallBack) => {
     const [keyPressed, setKeyPressed] = useState(false);
 
     const downHandler = (e) => {
+
         if (e.key === keyToDetec) {
             setKeyPressed(true);
             executeCallBack();
         }
+
     }
 
     const upHandler = (e) => {
@@ -15,24 +17,17 @@ export const useKeyPress = (keyToDetec, executeCallBack) => {
             setKeyPressed(false);
 
         }
+
     }
 
-    const keyHoldHandler = (e) => {
-
-        if (e.key === keyToDetec) {
-            setKeyPressed(true);
-            executeCallBack();
-        }
-    }
+   
     useEffect(() => {
 
         window.addEventListener('keydown', downHandler);
-        window.addEventListener('keyup', upHandler);
-        window.addEventListener('keydown', keyHoldHandler)
+       window.addEventListener('keyup', upHandler);
         return () => {
             window.removeEventListener('keydown', downHandler);
             window.removeEventListener('keyup', upHandler);
-            window.removeEventListener('keydown', keyHoldHandler);
         };
 
     }, []);
