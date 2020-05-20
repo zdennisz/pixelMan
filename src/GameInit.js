@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import {KeysInfo} from './KeysInfo'
 import './GameInit.css'
 import useKeyPress from './useKeyPress';
 import monsterPacCreator from './MonsterCreator'
@@ -125,9 +125,10 @@ export const GameInit = (props) => {
 
 
     return (
-        <div>
+        <>
             <canvas ref={canvasRef} width={screen.width * screen.ratio} height={screen.height * screen.ratio} />
-        </div>
+            <KeysInfo/>
+        </>
 
 
     )

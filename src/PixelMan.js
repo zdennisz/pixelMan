@@ -9,16 +9,17 @@ export const PixelManMain = (props) => {
     }
 
     return (
-        <div>
+        <>
             <div className="mainContainer">
                 {startGame ?
                     <GameInit />
                     :
-                    <div className="eightbit-btn" onClick={handleStartButton}>Start Game</div>
+                    <div className="eightbit-btn start-game_buttonLocation" onClick={handleStartButton}>Start Game</div>
 
                 }
             </div>
-        </div>);
+        </>
+        );
 }
 
 
