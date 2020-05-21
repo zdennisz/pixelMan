@@ -1,10 +1,17 @@
-
+import React, { useState, useEffect, useRef } from 'react';
 
 
 export const KeysInfo = (props) => {
 
 
-
-return null;
+//just the 4 buttons 
+return (
+<>
+<div className="button"/>
+<div className="button"/>
+<div className="button"/>
+<div className="button"/>
+</>
+);
 
 }

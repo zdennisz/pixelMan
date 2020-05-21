@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {KeysInfo} from './KeysInfo'
+import {Info} from './Info'
 import './GameInit.css'
 import useKeyPress from './useKeyPress';
 import monsterPacCreator from './MonsterCreator'
@@ -11,6 +11,7 @@ const width = window.innerWidth / 1.5;
 const height = window.innerHeight / 1.5;
 const collisionTimeOut = 8;
 export const GameInit = (props) => {
+
     const fps = 20;//limit fps to 50
     var playMusic = 1;//music flag 1-play 0-pause
     var collisionCounter = 0;//collision counter every 8 is a collision
@@ -127,7 +128,7 @@ export const GameInit = (props) => {
     return (
         <>
             <canvas ref={canvasRef} width={screen.width * screen.ratio} height={screen.height * screen.ratio} />
-            <KeysInfo/>
+            <Info />
         </>
 
 
