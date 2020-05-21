@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ff8901942c1c37bbc867585d0d7d33ce",
+    "revision": "06d20feafcd8789e065225c3e1ef19b6",
     "url": "/pixelMan/index.html"
   },
   {
-    "revision": "acf691148808cba2546d",
-    "url": "/pixelMan/static/css/main.ce8c338a.chunk.css"
+    "revision": "00c50ffbdf1950993703",
+    "url": "/pixelMan/static/css/main.c760bd62.chunk.css"
   },
   {
     "revision": "3986f9ae3cdea6868045",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pixelMan/static/js/2.ae6c8e5b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "acf691148808cba2546d",
-    "url": "/pixelMan/static/js/main.aa4ebba5.chunk.js"
+    "revision": "00c50ffbdf1950993703",
+    "url": "/pixelMan/static/js/main.ffa72936.chunk.js"
   },
   {
     "revision": "4d91c5d6aed83df5f43d",
